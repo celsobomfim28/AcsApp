@@ -16,11 +16,7 @@ public class EstadoService {
     @Autowired
     public EstadoService(EstadoRepository estadoRepository){
         this.estadoRepository = estadoRepository;
-    }
-
-    public Estado save(Estado estado){
-        return estadoRepository.save(estado);
-    }
+    };
 
     public List<Estado> index(){
         return estadoRepository.findAll();
