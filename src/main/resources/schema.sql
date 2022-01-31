@@ -1,1 +1,0 @@
-CREATE SCHEMA if not exists `fichaacs` DEFAULT CHARACTER SET utf8 ;
