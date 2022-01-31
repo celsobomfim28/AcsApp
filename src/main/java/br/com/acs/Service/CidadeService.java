@@ -18,10 +18,6 @@ public class CidadeService {
         this.cidadeRepository = cidadeRepository;
     }
 
-    public Cidade save(Cidade cidade){
-        return cidadeRepository.save(cidade);
-    }
-
     public List<Cidade> index(){
         return cidadeRepository.findAll();
     }
