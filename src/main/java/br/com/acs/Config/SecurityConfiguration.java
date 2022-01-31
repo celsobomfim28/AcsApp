@@ -60,6 +60,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.POST, "/profissional/salvar").permitAll()
 
+                .antMatchers(HttpMethod.GET, "/estado/index").permitAll()
+                .antMatchers(HttpMethod.GET, "/cidade/index").permitAll()
+
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
