@@ -23,8 +23,8 @@ public class ProfissionalRequestMapperImpl implements ProfissionalRequestMapper 
 
         profissional1.setCns( profissional.getCns() );
         profissional1.setNome( profissional.getNome() );
-        profissional1.setMicroarea( profissional.getMicroarea() );
-        profissional1.setPassword( profissional.getPassword() );
+        profissional1.setMicroarea(profissional.getMicroarea() );
+        profissional1.setPassword(profissional.getPassword() );
 
         profissional1.setEquipe( ConverterIdToObject.convertToEquipe(profissional.getIdEquipe()) );
 

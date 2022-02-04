@@ -57,12 +57,12 @@ public class Profissional implements UserDetails, Serializable {
 
     @Override
     public String getPassword() {
-        return this.getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return this.getCns();
+        return this.cns;
     }
 
     @Override
