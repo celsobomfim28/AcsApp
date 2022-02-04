@@ -33,9 +33,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .collect(Collectors.toList());
     }
 
-    @ExceptionHandler(Exception.class)
+    /*@ExceptionHandler(Exception.class)
     @Override
-    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> hand(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<ErrorObject> errors = getErrors(ex);
         ErrorResponse errorResponse = getErrorResponse(ex, status, errors);
         return new ResponseEntity<>(errorResponse, status);
@@ -50,5 +50,5 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     private ErrorResponse getErrorResponse(Exception ex, HttpStatus status, List<ErrorObject> errors) {
         return new ErrorResponse("Erro de sevidor interno", status.value(),
                 status.getReasonPhrase(), "Service", errors);
-    }
+    }*/
 }
