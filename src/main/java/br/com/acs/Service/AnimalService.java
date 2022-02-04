@@ -32,4 +32,7 @@ public class AnimalService {
     public Animal update(Animal animal){
         return animalRepository.save(animal);
     }
+    public List<Animal> findByIdDomicilio(Integer id){
+        return animalRepository.findAnimalByIdDomicilio(id);
+    }
 }
