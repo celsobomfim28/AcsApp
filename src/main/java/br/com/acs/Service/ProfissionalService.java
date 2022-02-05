@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class ProfissionalService {
 
+    @Autowired
     public static ProfissionalRepository profissionalRepository;
 
     @Autowired
