@@ -1,5 +1,4 @@
 package br.com.acs.Models.Enum;
-
 public enum TipoLogradouro {
     AEROPORTO,
     ALAMEDA,

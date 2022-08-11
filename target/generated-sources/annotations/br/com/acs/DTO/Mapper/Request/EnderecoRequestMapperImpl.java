@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-02-04T13:29:00-0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
+    date = "2022-08-05T08:45:50-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
 public class EnderecoRequestMapperImpl implements EnderecoRequestMapper {
@@ -28,7 +28,6 @@ public class EnderecoRequestMapperImpl implements EnderecoRequestMapper {
         endereco1.setCep( endereco.getCep() );
 
         endereco1.setTipoLogradouro( ConverterIdToObject.convertToTipoLogradouro(endereco.getTipoLogradouro()) );
-        endereco1.setDomicilio( ConverterIdToObject.convertIdToDomicilio(endereco.getIdDomicilio()) );
         endereco1.setCidade( ConverterIdToObject.convertIdToCidade(endereco.getIdCidade()) );
 
         return endereco1;

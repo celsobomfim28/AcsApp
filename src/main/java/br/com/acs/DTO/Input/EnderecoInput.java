@@ -15,6 +15,5 @@ public class EnderecoInput {
     private String complemento;
     private String bairro;
     private String cep;
-    private int idDomicilio;
     private int idCidade;
 }

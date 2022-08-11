@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 
-    @Query("SELECT e from Endereco e WHERE e.domicilio.idDomicilio = ?1")
-    Endereco findEnderecoByIdDomicilio(Integer id);
+
+
+    // @Query("SELECT e from Endereco e WHERE e.domicilio.idDomicilio = ?1")
+    //Endereco findEnderecoByIdDomicilio(Integer id);
 }

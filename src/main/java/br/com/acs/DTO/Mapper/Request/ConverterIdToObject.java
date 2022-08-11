@@ -1,14 +1,12 @@
 package br.com.acs.DTO.Mapper.Request;
 
-import br.com.acs.Models.Cidade;
-import br.com.acs.Models.Domicilio;
+import br.com.acs.Models.*;
 import br.com.acs.Models.Enum.*;
-import br.com.acs.Models.Equipe;
-import br.com.acs.Models.Unidade;
-import br.com.acs.Service.CidadeService;
-import br.com.acs.Service.DomicilioService;
-import br.com.acs.Service.EquipeService;
-import br.com.acs.Service.UnidadeService;
+import br.com.acs.Service.*;
+import br.com.acs.Utils.Util;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 public class ConverterIdToObject {
 
@@ -20,19 +18,27 @@ public class ConverterIdToObject {
         return EquipeService.equipeRepository.getById(id);
     }
 
-    public static Domicilio convertIdToDomicilio(Integer id){
-        return DomicilioService.domicilioRepository.getById(id);
+    public static Crianca convertToCrianca(Integer id){
+        return CriancaService.criancaRepository.getById(id);
     }
 
-    public static TipoAnimal convertStrToEnum(String tipo){
-        for(TipoAnimal tipoAnimal : TipoAnimal.values()){
-            if(tipo.equalsIgnoreCase(tipoAnimal.name())){
-                return tipoAnimal;
-            }
-        }
-        return null;
+    public static Profissional convertToProfissional(Integer id){
+        return ProfissionalService.profissionalRepository.getById(id);
+    }
+    public static int convertToIdade(int id, String dataFim){
+        Crianca c = CriancaService.criancaRepository.getById(id);
+        Period idade = Period.between(c.getDataNascimento(),
+                Util.toLocalDate(dataFim));
+        int i = (idade.getYears()*12)+ idade.getMonths();
+        return i;
     }
 
+    public static double setPeso(double peso){
+        return peso;
+    }
+    public static Endereco convertToEndereco(Integer id){
+        return EnderecoService.enderecoRepository.getById(id);
+    }
     public static TipoLogradouro convertToTipoLogradouro(String tipo){
         for(TipoLogradouro tipoLog : TipoLogradouro.values()){
             if(tipo.equalsIgnoreCase(tipoLog.name())){
@@ -42,90 +48,48 @@ public class ConverterIdToObject {
         return null;
     }
 
+    public static TipoParto convertToTipoParto(String tipo){
+        for(TipoParto tipoParto : TipoParto.values()){
+            if(tipo.equalsIgnoreCase(tipoParto.name())){
+                return tipoParto;
+            }
+        }
+        return null;
+    }
+
+    public static Raca convertToRaca(String raca){
+        for(Raca r : Raca.values()){
+            if(raca.equalsIgnoreCase(r.name())){
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public static TipoVacina convertToTipoVacina(String tipo){
+        for(TipoVacina t : TipoVacina.values()){
+            if(tipo.equalsIgnoreCase(t.name())){
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public static Dose convertToDose(String dose){
+        for(Dose d : Dose.values()){
+            if(dose.equalsIgnoreCase(d.name())){
+                return d;
+            }
+        }
+        return null;
+    }
+
     public static Cidade convertIdToCidade(Integer id){
         return CidadeService.cidadeRepository.getById(id);
     }
 
-    public static SituacaoMoradia convertToSituacaoMoradia(String tipo){
-        for(SituacaoMoradia situacaoMoradia : SituacaoMoradia.values()){
-            if(tipo.equalsIgnoreCase(situacaoMoradia.name())){
-                return situacaoMoradia;
-            }
-        }
-        return null;
-    }
-    public static Localizacao convertToLocalizacao(String tipo){
-        for(Localizacao localizacao : Localizacao.values()){
-            if(tipo.equalsIgnoreCase(localizacao.name())){
-                return localizacao;
-            }
-        }
-        return null;
-    }
-    public static TipoDomicilio convertToTipoDomicilio(String tipo){
-        for(TipoDomicilio tipoDomicilio : TipoDomicilio.values()){
-            if(tipo.equalsIgnoreCase(tipoDomicilio.name())){
-                return tipoDomicilio;
-            }
-        }
-        return null;
-    }
-    public static AreaProdRural convertToAreaProdRural(String tipo){
-        for(AreaProdRural areaProdRural : AreaProdRural.values()){
-            if(tipo.equalsIgnoreCase(areaProdRural.name())){
-                return areaProdRural;
-            }
-        }
-        return null;
-    }
-    public static TipoAcessoDomicilio convertToTipoAcessoDomicilio(String tipo){
-        for(TipoAcessoDomicilio tipoAcessoDomicilio : TipoAcessoDomicilio.values()){
-            if(tipo.equalsIgnoreCase(tipoAcessoDomicilio.name())){
-                return tipoAcessoDomicilio;
-            }
-        }
-        return null;
-    }
-    public static MaterialConstrucao convertToMaterialConstrucao(String tipo){
-        for(MaterialConstrucao materialConstrucao : MaterialConstrucao.values()){
-            if(tipo.equalsIgnoreCase(materialConstrucao.name())){
-                return materialConstrucao;
-            }
-        }
-        return null;
-    }
-    public static AbastecimentoAgua convertToAbastecimentoAgua(String tipo){
-        for(AbastecimentoAgua abastecimentoAgua : AbastecimentoAgua.values()){
-            if(tipo.equalsIgnoreCase(abastecimentoAgua.name())){
-                return abastecimentoAgua;
-            }
-        }
-        return null;
-    }
-    public static FormaEscoamento convertToFormaEscoamento(String tipo){
-        for(FormaEscoamento formaEscoamento : FormaEscoamento.values()){
-            if(tipo.equalsIgnoreCase(formaEscoamento.name())){
-                return formaEscoamento;
-            }
-        }
-        return null;
+    public static LocalDate convertToLocalDate(String date){
+        return Util.toLocalDate(date);
     }
 
-    public static TratamentoAgua convertToTratamentoAgua(String tipo){
-        for(TratamentoAgua tratamentoAgua : TratamentoAgua.values()){
-            if(tipo.equalsIgnoreCase(tratamentoAgua.name())){
-                return tratamentoAgua;
-            }
-        }
-        return null;
-    }
-
-    public static DestinoLixo convertToDestinoLixo(String tipo){
-        for(DestinoLixo destinoLixo : DestinoLixo.values()){
-            if(tipo.equalsIgnoreCase(destinoLixo.name())){
-                return destinoLixo;
-            }
-        }
-        return null;
-    }
 }

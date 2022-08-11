@@ -13,9 +13,6 @@ public interface EnderecoRequestMapper {
             "java(ConverterIdToObject.convertToTipoLogradouro(endereco.getTipoLogradouro()))",
             target = "tipoLogradouro")
     @Mapping(expression =
-            "java(ConverterIdToObject.convertIdToDomicilio(endereco.getIdDomicilio()))",
-            target = "domicilio")
-    @Mapping(expression =
             "java(ConverterIdToObject.convertIdToCidade(endereco.getIdCidade()))",
             target = "cidade")
     Endereco toEndereco(EnderecoInput endereco);

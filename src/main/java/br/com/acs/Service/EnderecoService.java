@@ -32,7 +32,5 @@ public class EnderecoService {
     public Endereco update(Endereco endereco){
         return enderecoRepository.save(endereco);
     }
-    public Endereco findByIdDomicilio(Integer id){
-        return enderecoRepository.findEnderecoByIdDomicilio(id);
-    }
+
 }

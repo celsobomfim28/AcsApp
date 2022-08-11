@@ -3,6 +3,8 @@ package br.com.acs.Config;
 import br.com.acs.Repositories.ProfissionalRepository;
 import br.com.acs.Service.AuthenticationService;
 import br.com.acs.Service.TokenService;
+import br.com.acs.errors.CustomAccessDeniedHandler;
+import br.com.acs.errors.CustomAuthenticationFailureHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestHeaderRequestMatcher;
+
+import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 @Configuration
@@ -45,7 +53,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //Configuration for authorization
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+
+        http
+                .authorizeRequests()
+                .antMatchers("/error").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
 
                 .antMatchers(HttpMethod.POST, "/unidade/save").permitAll()
@@ -64,14 +75,35 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/estado/index").permitAll()
                 .antMatchers(HttpMethod.GET, "/cidade/index").permitAll()
 
-                .anyRequest().authenticated()
-                .and().csrf().disable()
+                .antMatchers(HttpMethod.POST, "/crianca/save").permitAll()
+
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .failureHandler(authenticationFailureHandler())
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
+                .defaultAuthenticationEntryPointFor(
+                        new Http403ForbiddenEntryPoint(),
+                        new RequestHeaderRequestMatcher("X-Requested-With", "XMLHttpRequest"))
+                .and()
+                .csrf()
+                .disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(new TokenAuthenticationFilter(tokenService, repository), UsernamePasswordAuthenticationFilter.class);
+
+
+    }
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new CustomAuthenticationFailureHandler();
     }
 
-    //Configuration for static resources
-    @Override
-    public void configure(WebSecurity web) throws Exception {
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
     }
+
 }

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-02-04T13:28:59-0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
+    date = "2022-08-05T08:45:50-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
 public class ProfissionalResponseMapperImpl implements ProfissionalResponseMapper {
@@ -26,6 +26,11 @@ public class ProfissionalResponseMapperImpl implements ProfissionalResponseMappe
         profissionalOutput.setCns( profissional.getCns() );
         profissionalOutput.setNome( profissional.getNome() );
         profissionalOutput.setMicroarea( profissional.getMicroarea() );
+
+        profissionalOutput.setIne( profissional.getEquipe().getIne() );
+        profissionalOutput.setNumeroEquipe( profissional.getEquipe().getNumero() );
+        profissionalOutput.setNomeUnidade( profissional.getEquipe().getUnidade().getNome() );
+        profissionalOutput.setCnes( profissional.getEquipe().getUnidade().getCnes() );
 
         return profissionalOutput;
     }

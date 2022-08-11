@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-02-04T13:29:01-0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
+    date = "2022-08-05T08:45:50-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
 public class ProfissionalRequestMapperImpl implements ProfissionalRequestMapper {
@@ -23,8 +23,8 @@ public class ProfissionalRequestMapperImpl implements ProfissionalRequestMapper 
 
         profissional1.setCns( profissional.getCns() );
         profissional1.setNome( profissional.getNome() );
-        profissional1.setMicroarea(profissional.getMicroarea() );
-        profissional1.setPassword(profissional.getPassword() );
+        profissional1.setMicroarea( profissional.getMicroarea() );
+        profissional1.setPassword( profissional.getPassword() );
 
         profissional1.setEquipe( ConverterIdToObject.convertToEquipe(profissional.getIdEquipe()) );
 

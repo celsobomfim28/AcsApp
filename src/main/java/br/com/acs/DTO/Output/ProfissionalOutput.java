@@ -12,4 +12,10 @@ public class ProfissionalOutput {
     private String cns;
     private String nome;
     private int microarea;
+    private String ine;
+    private int numeroEquipe;
+    private String nomeUnidade;
+    private String cnes;
+
+
 }

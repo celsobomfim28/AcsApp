@@ -54,7 +54,7 @@ public class ProfissionalController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id){
         Profissional profissional = service.findById(id);
         return new ResponseEntity<>(profissionalResponseMapper.toProfissionalOutput(profissional),

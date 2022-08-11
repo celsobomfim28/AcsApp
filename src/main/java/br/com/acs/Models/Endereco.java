@@ -37,10 +37,6 @@ public class Endereco implements Serializable {
     private String cep;
 
     @OneToOne
-    @JoinColumn(name = "idDomicilio")
-    private Domicilio domicilio;
-
-    @OneToOne
     @JoinColumn(name="idCidade")
     private Cidade cidade;
 }

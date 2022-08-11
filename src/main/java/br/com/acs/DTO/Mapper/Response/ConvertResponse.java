@@ -1,30 +1,26 @@
 package br.com.acs.DTO.Mapper.Response;
 
-import br.com.acs.Models.Animal;
+import br.com.acs.Models.Crianca;
 import br.com.acs.Models.Endereco;
-import br.com.acs.Models.Enum.TipoAnimal;
-import br.com.acs.Service.AnimalService;
+import br.com.acs.Service.CriancaService;
 import br.com.acs.Service.EnderecoService;
+import br.com.acs.Utils.Util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 public class ConvertResponse {
 
-    public static List<String> convertTipoAnimalToStr(Integer id){
-        List<Animal> list = AnimalService.animalRepository.findAnimalByIdDomicilio(id);
 
-        List<String> name = new ArrayList<>();
-        for (Animal a : list){
-            name.add(a.getTipoAnimal().name());
-        }
-        return name;
-    }
 
-    public static String convertEnderecoToStr(Integer id){
-        Endereco e = EnderecoService.enderecoRepository.findEnderecoByIdDomicilio(id);
+   public static String convertEnderecoToStr(Integer id){
+      Crianca c = CriancaService.criancaRepository.findEnderecoById(id);
+      Endereco e = c.getEndereco();
         String endereco = e.getTipoLogradouro().name() +e.getNomeLogradouro() +e.getNumero()
                 +e.getBairro() +e.getCidade().getNome() + e.getCidade().getEstado().getUf();
         return endereco;
+    }
+
+    public static String convertLocalDateToStr(LocalDate localDate){
+       return Util.toString(localDate);
     }
 }

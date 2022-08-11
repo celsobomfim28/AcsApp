@@ -12,7 +12,15 @@ import java.util.List;
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ProfissionalResponseMapper {
 
+    @Mapping(expression = "java(profissional.getEquipe().getIne())", target = "ine")
+    @Mapping(expression = "java(profissional.getEquipe().getNumero())", target = "numeroEquipe")
+    @Mapping(expression = "java(profissional.getEquipe().getUnidade().getNome())", target = "nomeUnidade")
+    @Mapping(expression = "java(profissional.getEquipe().getUnidade().getCnes())", target = "cnes")
     ProfissionalOutput toProfissionalOutput(Profissional profissional);
 
+    @Mapping(expression = "java(profissional.getEquipe().getIne())", target = "ine")
+    @Mapping(expression = "java(profissional.getEquipe().getNumero())", target = "numeroEquipe")
+    @Mapping(expression = "java(profissional.getEquipe().getUnidade().getNome())", target = "nomeUnidade")
+    @Mapping(expression = "java(profissional.getEquipe().getUnidade().getCnes())", target = "cnes")
     List<ProfissionalOutput> toProfissionalOutputList(List<Profissional> profissionals);
 }

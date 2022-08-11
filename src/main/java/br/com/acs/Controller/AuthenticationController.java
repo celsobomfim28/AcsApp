@@ -6,6 +6,7 @@ import br.com.acs.Models.Profissional;
 import br.com.acs.Service.ProfissionalService;
 import br.com.acs.Service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,19 +31,19 @@ public class AuthenticationController {
 
     @PostMapping
     public ResponseEntity<TokenDTO> auth(@RequestBody @Validated LoginDTO loginDTO){
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDTO.getUser(), loginDTO.getPass());
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                    new UsernamePasswordAuthenticationToken(loginDTO.getUser(), loginDTO.getPass());
 
-        Authentication authentication =
-                authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-        Profissional c = ProfissionalService.profissionalRepository.findByCns(loginDTO.getUser());
-        String token = tokenService.generateToken(authentication);
+            Authentication authentication =
+                    authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+            Profissional c = ProfissionalService.profissionalRepository.findByCns(loginDTO.getUser());
+            String token = tokenService.generateToken(authentication);
 
-        return ResponseEntity.ok(TokenDTO.builder()
-                .type("Bearer")
-                .token(token)
-                .idCliente(c.getIdProfissional())
-                .build());
+            return ResponseEntity.ok(TokenDTO.builder()
+                    .type("Bearer")
+                    .token(token)
+                    .idCliente(c.getIdProfissional())
+                    .build());
 
     }
 
